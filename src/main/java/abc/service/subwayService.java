@@ -76,7 +76,6 @@ public class subwayService {
                     uplist2.add(content);
                     cal.setTime(date);
                 }
-
             }
             for (int i = 0; i < downlist.size(); i++) {
                 JSONObject content = (JSONObject) downlist.get(i);
