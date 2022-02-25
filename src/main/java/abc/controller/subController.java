@@ -5,21 +5,11 @@ import abc.service.subwayService;
 import lombok.SneakyThrows;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 @Controller
 public class subController {
@@ -32,11 +22,16 @@ public class subController {
 
         JSONArray uplist = sservice.getMain(1);
         JSONArray downlist = sservice.getMain(2);
-            //System.out.println(리스트테스트);
-            //System.out.println(리스트테스트2);
-
         model.addAttribute("uplist", uplist);
         model.addAttribute("downlist", downlist);
+
+        for (int i = 0; i < uplist.size(); i++) {
+
+            JSONObject jsonObject = (JSONObject) uplist.get(i);
+            String ss = jsonObject.get("statnTid").toString();
+            System.out.println(ss);
+        }
+        System.out.println(uplist);
         return "main";
     }
     @SneakyThrows
@@ -57,5 +52,7 @@ public class subController {
         }
         return "main";
     }
+
+
 
 }
